@@ -27,7 +27,7 @@ func Init(logsDir, logsFile string, level LogLevel, format func(level LogLevel, 
 	if isHave == true {
 		logsFile = name
 	}
-	logsPath := filepath.Join(logsDir, logsFile)
+	logsPath := filepath.Join(logsDir, fmt.Sprintf("%s.log", logsFile))
 	err := os.MkdirAll(logsDir, os.ModePerm) // Создаем директорию, если она не существует
 	if err != nil {
 		fmt.Println("Ошибка при создании директории логов:", err)
