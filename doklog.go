@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -18,10 +19,14 @@ func NewLogger(file *os.File, level LogLevel, format func(level LogLevel, time t
 
 // Init инициализирует логгер с указанными параметрами.
 // Пример:
-// log := logify.Init("log", "all.log", logify.InfoLevel, logify.DefaultLogFormat)
+// log := logify.Init("log", "all", logify.InfoLevel, logify.DefaultLogFormat)
 //
 //	defer log.Close()
 func Init(logsDir, logsFile string, level LogLevel, format func(level LogLevel, time time.Time, file string, line int, message string) string) *Logger {
+	name, _, isHave := strings.Cut(logsFile, ".")
+	if isHave == true {
+		logsFile = name
+	}
 	logsPath := filepath.Join(logsDir, logsFile)
 	err := os.MkdirAll(logsDir, os.ModePerm) // Создаем директорию, если она не существует
 	if err != nil {
