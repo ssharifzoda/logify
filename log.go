@@ -127,8 +127,8 @@ func levelString(level LogLevel) string {
 // Примеры использования:
 
 // Пример использования Init и Log:
-// log := logger.Init("logs", "app.log", logger.InfoLevel, logger.DefaultLogFormat)
-// log.Log(logger.InfoLevel, "This is an info message")
+// log := logify.Init("logs", "app.log", logify.InfoLevel, logify.DefaultLogFormat)
+// log.Log(logify.InfoLevel, "This is an info message")
 
 // Пример использования Close:
 // log.Close()
